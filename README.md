@@ -23,3 +23,5 @@ How to build zenfone kernel
 	make -f KernelMakefile TARGET_DEVICE=hd build_kernel
   	or
 	make -j4 -f KernelMakefile TARGET_DEVICE=hd modules_install
+	
+#6 If you want to compile this kernel for recovery, define in kernel makefile CONFIG_CC_OPTIMIZE_FOR_SIZE

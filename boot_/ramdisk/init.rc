@@ -36,3 +36,4 @@ service init_d /system/bin/logwrapper /system/xbin/busybox run-parts /system/etc
     user root
     group shell
     oneshot
+

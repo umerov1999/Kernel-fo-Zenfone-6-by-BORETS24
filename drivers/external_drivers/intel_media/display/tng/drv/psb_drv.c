@@ -3920,10 +3920,10 @@ static ssize_t csc_control_write(struct file *file, const char *buffer,
 	return count;
 }
 
-static const struct file_operations psb_csc_proc_fops = {
+/*static const struct file_operations psb_csc_proc_fops = {
        .owner = THIS_MODULE,
        .read = csc_control_read,
-       .write = csc_control_write,
+       .write = csc_control_write,*/
 };
 
 static int psb_hdmi_proc_open(struct inode *inode, struct file *file)
@@ -4098,9 +4098,9 @@ static int psb_proc_init(struct drm_minor *minor)
 	rgx_HWR_control_proc_init(minor);
 #endif
 
-	csc_setting = proc_create_data(CSC_PROC_ENTRY, 0644, minor->proc_root, &psb_csc_proc_fops, minor);
+/*	csc_setting = proc_create_data(CSC_PROC_ENTRY, 0644, minor->proc_root, &psb_csc_proc_fops, minor);
 
-	return 0;
+	return 0;*/
 }
 
 static void psb_proc_cleanup(struct drm_minor *minor)

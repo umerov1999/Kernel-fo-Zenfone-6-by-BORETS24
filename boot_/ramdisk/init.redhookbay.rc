@@ -35,6 +35,13 @@ on init
     insmod /lib/modules/pvrsgx.ko
     insmod /lib/modules/hdmi_audio.ko
     chmod 0600 /dev/dri/controlD64
+	
+	
+    insmod /lib/modules/kvm.ko
+    insmod /lib/modules/kvm-intel.ko
+    insmod /lib/modules/vhost_net.ko
+    insmod /lib/modules/vringh.ko
+    insmod /lib/modules/cifs.ko
 
     # Insert matrix for PnP measurements
     insmod /lib/modules/matrix.ko
@@ -119,7 +126,7 @@ setprop intel.dpst.userlevel 3
     setprop ro.rebootchargermode true
 
     #Change mmc read ahead size from 128 to 256 to reduce USB MTP read latencies
-    write /sys/block/mmcblk0/queue/read_ahead_kb 256
+    write /sys/block/mmcblk0/queue/read_ahead_kb 128
 
     #set dirty background bytes to 16MB to reduce USB MTP write latencies
     write /proc/sys/vm/dirty_background_bytes 4194304

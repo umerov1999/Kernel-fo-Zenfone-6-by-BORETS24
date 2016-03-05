@@ -132,14 +132,6 @@ service atproxy_usbreset /system/bin/atproxy_usbreset
     user radio
     disabled
 
-service modem-c_main-sh /system/bin/sh /init.class_main.sh
-    class main
-    user root
-    oneshot
-
-on property:vold.decrypt=trigger_restart_framework
-    start modem-c_main-sh
-
 on property:persist.radio.multisim.config=dsds
     start ril-daemon
     start ril-daemon2

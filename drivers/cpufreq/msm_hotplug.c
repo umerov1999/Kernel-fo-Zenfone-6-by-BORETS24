@@ -30,7 +30,7 @@
 
 #define MSM_HOTPLUG		"msm_hotplug"
 #define DEFAULT_UPDATE_RATE	12
-#define START_DELAY		HZ * 30
+#define START_DELAY		HZ * 40
 //#define MIN_INPUT_INTERVAL	150 * 1000L
 #define DEFAULT_HISTORY_SIZE	11
 #define DEFAULT_DOWN_LOCK_DUR	1000
@@ -38,7 +38,7 @@
 //#define DEFAULT_MIN_CPUS_ONLINE	2
 #define DEFAULT_MAX_CPUS_ONLINE	NR_CPUS
 #define DEFAULT_FAST_LANE_LOAD	43
-#define DEFAULT_FAST_LANE_LOAD2	95
+#define DEFAULT_FAST_LANE_LOAD2	97
 
 static unsigned int debug = 0;
 module_param_named(debug_mask, debug, uint, 0644);
@@ -253,7 +253,7 @@ static void remove_down_lock(struct work_struct *work)
 	dl->locked = 0;
 }
 
-static int check_down_lock(unsigned int cpu)
+/*static int check_down_lock(unsigned int cpu)
 {
 	struct down_lock *dl = &per_cpu(lock_info, cpu);
 
@@ -287,7 +287,7 @@ static int get_lowest_load_cpu(void)
 		return -EPERM;
 
 	return lowest_cpu;
-}
+}*/
 
 static void __ref cpu_up_work(struct work_struct *work)
 {
@@ -308,7 +308,7 @@ static void __ref cpu_up_work(struct work_struct *work)
 
 static void cpu_down_work(struct work_struct *work)
 {
-	int cpu, lowest_cpu;
+	int cpu;
 	unsigned int target;
 
 	target = hotplug.target_cpus;
@@ -316,16 +316,16 @@ static void cpu_down_work(struct work_struct *work)
 	for_each_online_cpu(cpu) {
 		if (cpu == 0)
 			continue;
-		lowest_cpu = get_lowest_load_cpu();
-		if (lowest_cpu > 0) {
-			if (check_down_lock(lowest_cpu))
-				break;
+		//lowest_cpu = get_lowest_load_cpu();
+		//if (lowest_cpu > 0) {
+		//	if (check_down_lock(lowest_cpu))
+		//		break;
 			cpu_down(3);
 			cpu_down(2);
 		}
-		if (target == num_online_cpus())
-			break;
-	}
+		//if (target == num_online_cpus())
+		//	break;
+	//}
 }
 
 static void online_cpu(unsigned int target)

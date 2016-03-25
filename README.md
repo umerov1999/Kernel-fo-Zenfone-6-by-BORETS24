@@ -12,7 +12,7 @@ How to build zenfone kernel
 #4 build 'minigzip' and 'openssl' modules
 	source build/envsetup.sh
 	lunch aosp_x86-eng
-	make -j4 minigzip openssl
+	make -j20 minigzip openssl
 
 #5 build kernel image and modules
 ## define TARGET_DEVICE to overwrite
@@ -22,6 +22,6 @@ How to build zenfone kernel
 
 	make -f KernelMakefile TARGET_DEVICE=hd build_kernel
   	or
-	make -j4 -f KernelMakefile TARGET_DEVICE=hd modules_install
+	make -j20 -f KernelMakefile TARGET_DEVICE=hd modules_install
 	
 #6 If you want to compile this kernel for recovery, define in kernel makefile CONFIG_CC_OPTIMIZE_FOR_SIZE
